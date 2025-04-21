@@ -1,5 +1,5 @@
 "use client";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -35,10 +35,34 @@ export const Navigation: React.FC = () => {
 							Projects
 						</Link>
 						<Link
+							href="/blogs"
+							className="duration-200 text-zinc-400 hover:text-zinc-100"
+						>
+							Blogs
+						</Link>
+						<Link
 							href="/contact"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
 						>
 							Contact
+						</Link>
+						<Link target="_blank" href="https://twitter.com/chronark_">
+							<Twitter
+								className={`w-6 h-6 duration-200 hover:font-medium ${
+									isIntersecting
+										? " text-zinc-400 hover:text-zinc-100"
+										: "text-zinc-600 hover:text-zinc-900"
+								} `}
+							/>
+						</Link>
+						<Link target="_blank" href="https://github.com/chronark">
+							<Github
+								className={`w-6 h-6 duration-200 hover:font-medium ${
+									isIntersecting
+										? " text-zinc-400 hover:text-zinc-100"
+										: "text-zinc-600 hover:text-zinc-900"
+								} `}
+							/>
 						</Link>
 					</div>
 
@@ -46,7 +70,8 @@ export const Navigation: React.FC = () => {
 						href="/"
 						className="duration-200 text-zinc-300 hover:text-zinc-100"
 					>
-						<ArrowLeft className="w-6 h-6 " />
+						{/* <ArrowLeft className="w-6 h-6 " /> */}
+						Yuki Mukaigawara
 					</Link>
 				</div>
 			</div>
