@@ -66,8 +66,12 @@ export default async function BlogsPage() {
             Some of the projects are from work and some are on my own time.
           </p>
         </div>
+
         <div className="w-full h-px bg-zinc-800" />
 
+        <h3 className="font-bold tracking-tight text-zinc-100 sm:text-4xl">
+            Recent Posts
+        </h3>
         <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
           <Card>
             <Link href={`/blogs/${featured.slug}`}>
@@ -118,6 +122,7 @@ export default async function BlogsPage() {
             ))}
           </div>
         </div>
+        
         <div className="hidden w-full h-px md:block bg-zinc-800" />
 
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
