@@ -4,6 +4,7 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
 import { Eye } from "lucide-react";
+import { allBlogs } from "@/.contentlayer/generated";
 
 export const revalidate = 60;
 
@@ -14,44 +15,12 @@ export type Project = {
   date: string;
 }
 
-const mockProjects :Project[]= [
-  {
-    slug: "access",
-    title: "SQLの基礎を学ぶ",
-    description: "このプロジェクトはSQLの基礎を学ぶためのものです。",
-    date: "2024-12-01",
-  },
-  {
-    slug: "project-2",
-    title: "Awesome Project Two",
-    description: "Description for project two.",
-    date: "2025-01-10",
-  },
-  {
-    slug: "project-3",
-    title: "Interesting Project Three",
-    description: "Details about project three.",
-    date: "2025-02-15",
-  },
-  {
-    slug: "project-4",
-    title: "Final Project",
-    description: "The last project in the list.",
-    date: "2025-03-20",
-  },
-];
-
 // 仮データを分ける
-const featured = mockProjects[0];
-const top2 = mockProjects[1];
-const top3 = mockProjects[2];
-const sorted = mockProjects;
-const views: Record<string, number> = {
-  "project-1": 1234,
-  "project-2": 567,
-  "project-3": 890,
-  "project-4": 345,
-};
+const featured = allBlogs[0];
+const top2 = allBlogs[1];
+const top3 = allBlogs[2];
+const sorted = allBlogs;
+// const views: Record<string, number> = 
 
 export default async function BlogsPage() {
   return (
@@ -90,9 +59,10 @@ export default async function BlogsPage() {
                   </div>
                   <span className="flex items-center gap-1 text-xs text-zinc-500">
                     <Eye className="w-4 h-4" />
-                    {Intl.NumberFormat("en-US", {
+                    {/* {Intl.NumberFormat("en-US", {
                       notation: "compact",
-                    }).format(views[featured.slug] ?? 0)}
+                    }).format(views[featured.slug] ?? 0)} */}
+                    0
                   </span>
                 </div>
 
@@ -117,13 +87,13 @@ export default async function BlogsPage() {
           <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
             {[top2, top3].map((project) => (
               <Card key={project.slug}>
-                <Article project={project} views={views[project.slug] ?? 0} />
+                <Article project={project} views={ 0} />
               </Card>
             ))}
           </div>
         </div>
         
-        <div className="hidden w-full h-px md:block bg-zinc-800" />
+        {/* <div className="hidden w-full h-px md:block bg-zinc-800" />
 
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
           <div className="grid grid-cols-1 gap-4">
@@ -131,7 +101,7 @@ export default async function BlogsPage() {
               .filter((_, i) => i % 3 === 0)
               .map((project) => (
                 <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
+                  <Article project={project} views={ 0} />
                 </Card>
               ))}
           </div>
@@ -140,7 +110,7 @@ export default async function BlogsPage() {
               .filter((_, i) => i % 3 === 1)
               .map((project) => (
                 <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
+                  <Article project={project} views={0} />
                 </Card>
               ))}
           </div>
@@ -149,11 +119,11 @@ export default async function BlogsPage() {
               .filter((_, i) => i % 3 === 2)
               .map((project) => (
                 <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
+                  <Article project={project} views={0} />
                 </Card>
               ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
-import { allProjects } from "contentlayer/generated";
+import { allBlogs, allProjects } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
-import { ReportView } from "./view";
 
-export const revalidate = 60;
 
 type Props = {
   params: {
@@ -14,7 +12,7 @@ type Props = {
 };
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
-  return allProjects
+  return allBlogs
     .filter((p) => p.published)
     .map((p) => ({
       slug: p.slug,
@@ -23,19 +21,18 @@ export async function generateStaticParams(): Promise<Props["params"][]> {
 
 export default async function PostPage({ params }: Props) {
   const slug = params?.slug;
-  const project = allProjects.find((project) => project.slug === slug);
+  const blog = allBlogs.find((blog) => blog.slug === slug);
 
-  if (!project) {
+  if (!blog) {
     notFound();
   }
 
   return (
     <div className="bg-zinc-50 min-h-screen">
-      <Header project={project} views={1000} />
-      <ReportView slug={project.slug} />
+      <Header project={blog} views={1000} />
 
       <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-        <Mdx code={project.body.code} />
+        <Mdx code={blog.body.code} />
       </article>
     </div>
   );
