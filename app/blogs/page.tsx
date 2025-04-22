@@ -32,7 +32,7 @@ export default async function BlogsPage() {
             Blogs
           </h2>
           <p className="mt-4 text-zinc-400">
-            Some of the projects are from work and some are on my own time.
+            お役に立てると嬉しいです。
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default async function BlogsPage() {
           </div>
         </div>
         
-        {/* <div className="hidden w-full h-px md:block bg-zinc-800" />
+         <div className="hidden w-full h-px md:block bg-zinc-800" />
 
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
           <div className="grid grid-cols-1 gap-4">
@@ -123,7 +123,7 @@ export default async function BlogsPage() {
                 </Card>
               ))}
           </div>
-        </div> */}
+        </div> 
       </div>
     </div>
   );

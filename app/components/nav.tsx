@@ -28,25 +28,25 @@ export const Navigation: React.FC = () => {
 			>
 				<div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
 					<div className="flex justify-between gap-8">
-						<Link
+						{/* <Link
 							href="/projects"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
 						>
 							Projects
-						</Link>
+						</Link> */}
 						<Link
 							href="/blogs"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
 						>
 							Blogs
 						</Link>
-						<Link
+						{/* <Link
 							href="/contact"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
 						>
 							Contact
-						</Link>
-						<Link target="_blank" href="https://twitter.com/chronark_">
+						</Link> */}
+						<Link target="_blank" href="https://x.com/MUKAIGA_W">
 							<Twitter
 								className={`w-6 h-6 duration-200 hover:font-medium ${
 									isIntersecting
@@ -55,7 +55,7 @@ export const Navigation: React.FC = () => {
 								} `}
 							/>
 						</Link>
-						<Link target="_blank" href="https://github.com/chronark">
+						<Link target="_blank" href="https://github.com/mukaigawara">
 							<Github
 								className={`w-6 h-6 duration-200 hover:font-medium ${
 									isIntersecting
