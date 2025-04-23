@@ -1,0 +1,70 @@
+---
+published: true
+title: "VSCodeで使用するTypeScriptのバージョンに気をつける"
+description: "VSCodeでプロジェクトを開発する際に、意図しないTypeScriptバージョンが使われることを防ぐためのポイントがあります。プロジェクトに沿ったTypeScriptを正しく使うことで、開発環境のズレによる不具合を未然に防げます。"
+# repository: chronark/access
+date: "2025-04-22"
+  
+---
+## 背景
+
+とあるタスクにて。
+
+開発も終わり、PRを出すためにちょっくら`next build`を実行してみた。
+
+やっと終わった、と思っていたところに次のエラーが出てしまった。
+
+```
+プロパティ 'isSubsetOf' は型 'Set<string>' に存在しません。
+```
+
+なんでだ、VSCodeでの静的解析ではエラーが出ていなかったはずだ。
+
+実は`isSubsetOf`は、TypeScriptのバージョン5.5から追加されたメソッドだったのだ。
+
+## ・・・
+
+`next build`では型エラーになるのに、VSCodeでは型エラーにならない。
+
+なぜか。
+**VSCodeは、プロジェクトのTypeScriptのバージョンではなく、VSCodeにインストールされているTypeScript(5.9)を使用していた**のだ。
+
+最新のバージョンなので、`isSubsetOf`が使えるため、VSCode上ではエラーにならなかった。
+
+## つまり
+今回得た教訓としては、
+- VSCodeでプロジェクトを開発する際は、VSCodeにインストールされているTypeScriptではなく、プロジェクトのTypeScriptを使用すること。
+
+## やり方
+コマンドパレットを開き、`TypeScript: Select TypeScript Version`を選択する。
+すると、プロジェクトのTypeScriptを選択することができる。
+
+![VSCodeのTypeScriptのバージョンをプロジェクトに合わせる](/images/image.png)
+
+さらに、.VSCodeの設定で、`typescript.tsdk`をプロジェクトのTypeScriptのパスに指定することで、VSCodeが常にプロジェクトのTypeScriptを使用するように設定できる。
+
+```json
+{
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}
+```
+
+これにより、チームメンバーも同じTypeScriptのバージョンを使用することができるので、ぜひやるべきである。
+
+## JavaScript and TypeScript Nightlyの罠
+VSCodeの拡張機能である`JavaScript and TypeScript Nightly`をインストールしていると、VSCodeがこの拡張機能にバンドルされているTypeScriptを使用するようになる。
+
+自分はなんとなくインストールしていたが、今回においてはこれが罠となってしまった。
+
+> The simplest way to try out the latest TypeScript features in VS Code is to install the JavaScript and TypeScript Nightly extension.
+> This extension automatically replaces VS Code's built-in TypeScript version with the latest TypeScript nightly build. 
+> Just make sure you switch back to using VS Code's TypeScript version if you've configured your TypeScript version with the TypeScript: Select TypeScript Version command.
+> 
+> 翻訳: VSCodeで最新のTypeScriptの機能を試す最も簡単な方法は、JavaScript and TypeScript Nightly拡張機能をインストールすることです。**この拡張機能は、VSCodeに組み込まれているTypeScriptのバージョンを最新のTypeScriptのナイトリービルドに置き換えます。**TypeScript: Select TypeScript VersionコマンドでTypeScriptのバージョンを設定している場合は、VSCodeのTypeScriptのバージョンに戻すことを忘れないでください。
+>
+> https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-typescript-nightly-builds
+
+この拡張機能は、TypeScriptの最新の機能を試すことができるが、プロジェクトのTypeScriptとは異なるバージョンを使用することになるため、注意が必要であった。
+
+適当に拡張機能を入れないようにしたい。
+
