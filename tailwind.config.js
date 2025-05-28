@@ -6,6 +6,8 @@ module.exports = {
     darkMode: ["class"],
     content: [
 		"./app/**/*.{js,ts,jsx,tsx}",
+"./global.css",
+"./app/layout.tsx",
 		"./mdx-components.tsx",
 		"content/**/*.mdx",
 	],
